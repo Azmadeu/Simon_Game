@@ -1,22 +1,23 @@
+
 var sequenceOfColors = [];
-
-
+var count = 0;
 
 function randomColorsGeneration() {
-    sequenceOfColors.push(getRandomInt(0, 3));
-    for (var i = 0; i < sequenceOfColors.length; i++){
-        if (sequenceOfColors[i] === 0){
+    sequenceOfColors.push(getRandomInt(0, 4));
+    for (var i = 0; i < sequenceOfColors.length; i++) {
+        if (sequenceOfColors[i] === 0) {
             $('#0').addClass('lightGreen');
-            alert("0");
-        }else if (sequenceOfColors[i] === 1){
+            //alert("0");
+        } else if (sequenceOfColors[i] === 1) {
             $('#1').addClass('lightRed');
-            alert("1");
-        }else if (sequenceOfColors[i] === 2){
+            //alert("1");
+        } else if (sequenceOfColors[i] === 2) {
             $('#2').addClass('lightBlue');
-            alert("2");
-        }else if (sequenceOfColors[i] === 3){
+            //alert("2");
+        } else if (sequenceOfColors[i] === 3) {
             $('#3').addClass('lightYellow');
-            alert("3");
+        } else if (sequenceOfColors[i] === 4) {
+            alert("4");
         }
     }
 }
@@ -55,14 +56,64 @@ function Sound(source, volume, loop) {
         this.loop = loop;
     }
 }
-window.onload = function() {
-    var button = $('#start')[0];
-    var buttonTwo = $('#strict')[0];
-    button.onclick = function () {
-        alert("START!!!");
-        randomColorsGeneration();
-    buttonTwo.onclick = function () {
-        alert("STRICT!!!")
-    }
+
+function removeClassesFromColors() {
+    $('#0').removeClass('lightGreen');
+    $('#0').removeClass('clickable');
+    $('#1').removeClass('lightRed');
+    $('#1').removeClass('clickable');
+    $('#2').removeClass('lightBlue');
+    $('#2').removeClass('clickable');
+    $('#3').removeClass('lightYellow');
+    $('#3').removeClass('clickable');
+}
+
+function addClasses() {
+    $('#0').addClass('clickable');
+    $('#1').addClass('clickable');
+    $('#2').addClass('clickable');
+    $('#3').addClass('clickable');
+}
+
+window.onload = function () {
+    var start = $('#start')[0];
+    var strict = $('#strict')[0];
+    var onOff = $('#on-off')[0];
+    var onOffTwo = $('.sw-slot')[0];
+    onOff.onclick, onOffTwo.onclick = function () {
+        if ($('#on-off').hasClass('left')) {
+            $('#on-off').removeClass('left');
+            $('.count').removeClass('light');
+            $('.count').removeClass('light').text('--');
+            $('#mode-led').removeClass('strictLight');
+            removeClassesFromColors();
+            count = 0;
+            sequenceOfColors = [];
+        } else {
+            $('#on-off').addClass('left');
+            $('.count').addClass('light');
+            addClasses();
+        }
+        start.onclick = function () {
+            if ($('#on-off').hasClass('left')) {
+                if (count < 99) {
+                    randomColorsGeneration();
+                    count += 1;
+                    if (count < 10) {
+                        $('.count').text("0" + count);
+                    } else if (count >= 10) {
+                        $('.count').text(count);
+                    } else if (count === 99) {
+                        $('.count').text("99");
+                    }
+                } else {
+                    alert('WHO ARE YOU?!!!');
+                }
+            }
+            strict.onclick = function () {
+                $('#mode-led').addClass('strictLight');
+            }
+
+        };
     };
 };

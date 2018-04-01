@@ -48,6 +48,7 @@ body {
     height: 200px;
     background-color: grey;
     border: 12px solid #333;
+    opacity: 0.9;
 }
 
 .count {
@@ -111,7 +112,7 @@ body {
     color: #222;
     font-family: 'Oswald', Arial, sans;
     font-size: 0.7em;
-    margin-top: 5px;
+    margin-top: 12px;
     text-align: center;
 }
 
@@ -209,4 +210,16 @@ body {
 
 .lightBlue {
     background-color: #00a3fb;
+}
+
+.light {
+    color:#ba3434;
+}
+
+.strictLight {
+    background-color: #da3d45;
+}
+
+.left {
+    left: 20px;
 }
