@@ -118,6 +118,7 @@ body {
 .rw.bot {
     margin-top: 10px;
 }
+
 .rw {
     margin-bottom: -4px;
 }
@@ -170,19 +171,42 @@ body {
     background-color: #00a74a;
 }
 
-.t-l {
+.top-left-border-radius {
     border-top-left-radius: 100%;
 }
 
-.t-r {
+.top-right-border-radius {
     border-top-right-radius: 100%;
 }
 
-.b-l {
+.bottom-left-border-radius {
     border-bottom-left-radius: 100%;
 }
 
-.b-r {
+.bottom-right-border-radius {
     border-bottom-right-radius: 100%;
 }
 
+.invisible {
+    opacity: 0;
+}
+
+.sequence {
+    opacity: 1.5;
+}
+
+.lightGreen {
+    background-color: #62d27d;
+}
+
+.lightRed {
+    background-color: #f3695c;
+}
+
+.lightYellow {
+    background-color: #fed93f;
+}
+
+.lightBlue {
+    background-color: #00a3fb;
+}
