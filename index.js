@@ -1,4 +1,3 @@
-
 var sequenceOfColors = [];
 var count = 0;
 
@@ -80,6 +79,10 @@ window.onload = function () {
     var strict = $('#strict')[0];
     var onOff = $('#on-off')[0];
     var onOffTwo = $('.sw-slot')[0];
+    var green = $('#0')[0];
+    var red = $('#1')[0];
+    var blue = $('#2')[0];
+    var yellow = $('#3')[0];
     onOff.onclick, onOffTwo.onclick = function () {
         if ($('#on-off').hasClass('left')) {
             $('#on-off').removeClass('left');
@@ -92,10 +95,10 @@ window.onload = function () {
         } else {
             $('#on-off').addClass('left');
             $('.count').addClass('light');
-            addClasses();
         }
         start.onclick = function () {
             if ($('#on-off').hasClass('left')) {
+                addClasses();
                 if (count < 99) {
                     randomColorsGeneration();
                     count += 1;
@@ -110,9 +113,21 @@ window.onload = function () {
                     alert('WHO ARE YOU?!!!');
                 }
             }
+            green.onclick = function(){
+                $('#0').addClass('lightGreen');
+            };
+            red.onclick = function(){
+                $('#1').addClass('lightRed');
+            };
+            blue.onclick = function(){
+                $('#2').addClass('lightBlue');
+            };
+            yellow.onclick = function(){
+                $('#3').addClass('lightYellow');
+            };
             strict.onclick = function () {
                 $('#mode-led').addClass('strictLight');
-            }
+            };
 
         };
     };
