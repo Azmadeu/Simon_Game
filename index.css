@@ -2,6 +2,10 @@ body {
     background: url('http://cdn.backgroundhost.com/backgrounds/subtlepatterns/retina_wood.png')
 }
 
+/*body, div, #0, #1, #2, #3 {*/
+    /*transition: all 2s;*/
+/*}*/
+
 .wrap {
     width: 472px;
     height: 472px;
@@ -23,11 +27,6 @@ body {
     font-size: 100%;
     font: inherit;
     vertical-align: baseline;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    -o-user-select: none;
-    user-select: none;
 }
 
 .center {
@@ -117,7 +116,7 @@ body {
 }
 
 .rw.bot {
-    margin-top: 10px;
+    margin-top: 20px;
 }
 
 .rw {
@@ -222,4 +221,24 @@ body {
 
 .left {
     left: 20px;
+}
+
+h3 {
+    position: fixed;
+    bottom: 0;
+    left: 42%;
+    right: 35%;
+    opacity: 0.6;
+}
+
+p {
+    margin-top: 70px;
+    margin-left: 50px;
+    font-weight: 600;
+    font-size: 25px;
+    position: absolute;
+}
+
+h2 {
+    position: absolute;
 }
