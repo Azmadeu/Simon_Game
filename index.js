@@ -13,19 +13,19 @@ function strictOnClick() {
     sequenceOfColorsByClick = [];
     for (var j = 0; j < sequenceOfColors.length; j++) {
         if (sequenceOfColors[j] === 0) {
-            soundGreen();
+          //  soundGreen();
             $('#0').addClass('lightGreen');
             setTimeout("$('#0').removeClass('lightGreen')", 1000);
         } else if (sequenceOfColors[j] === 1) {
-            soundRed();
+          //  soundRed();
             $('#1').addClass('lightRed');
             setTimeout("$('#1').removeClass('lightRed')", 1000);
         } else if (sequenceOfColors[j] === 2) {
-            soundBlue();
+          //  soundBlue();
             $('#2').addClass('lightBlue');
             setTimeout("$('#2').removeClass('lightBlue')", 1000);
         } else if (sequenceOfColors[j] === 3) {
-            soundGreen();
+          //  soundGreen();
             $('#3').addClass('lightYellow');
             setTimeout("$('#3').removeClass('lightYellow')", 1000);
         }
@@ -60,48 +60,48 @@ function randomColorsGeneration() {
     sequenceOfColors.push(getRandomInt(0, 4));
     for (var i = 0; i < sequenceOfColors.length; i++) {
         if (sequenceOfColors[i] === 0) {
-            setTimeout(soundGreen(),500*i);
+           // setTimeout(soundGreen(),500*i);
             setTimeout("$('#0').addClass('lightGreen')",100*i);
             setTimeout("$('#0').removeClass('lightGreen')", 1000);
         } else if (sequenceOfColors[i] === 1) {
-            setTimeout(soundRed(),500*i);
+          //  setTimeout(soundRed(),500*i);
             setTimeout("$('#1').addClass('lightRed')",100*i);
             setTimeout("$('#1').removeClass('lightRed')", 1000);
         } else if (sequenceOfColors[i] === 2) {
-            setTimeout(soundBlue(),500*i);
+         //   setTimeout(soundBlue(),500*i);
             setTimeout("$('#2').addClass('lightBlue')",100*i);
             setTimeout("$('#2').removeClass('lightBlue')", 1000);
         } else if (sequenceOfColors[i] === 3) {
-            setTimeout(soundYellow(),500*i);
+          //  setTimeout(soundYellow(),500*i);
             setTimeout("$('#3').addClass('lightYellow')",100*i);
             setTimeout("$('#3').removeClass('lightYellow')", 1000);
         }
     }
 }
 
-// function soundGreen() {
-//     var audio = new Audio();
-//     audio.src = 'https://s3.amazonaws.com/freecodecamp/simonSound1.mp3';
-//     audio.autoplay = true;
-// }
-//
-// function soundRed() {
-//     var audio = new Audio();
-//     audio.src = 'https://s3.amazonaws.com/freecodecamp/simonSound2.mp3';
-//     audio.autoplay = true;
-// }
-//
-// function soundBlue() {
-//     var audio = new Audio();
-//     audio.src = 'https://s3.amazonaws.com/freecodecamp/simonSound3.mp3';
-//     audio.autoplay = true;
-// }
-//
-// function soundYellow() {
-//     var audio = new Audio();
-//     audio.src = 'https://s3.amazonaws.com/freecodecamp/simonSound4.mp3';
-//     audio.autoplay = true;
-// }
+function soundGreen() {
+    var audio = new Audio();
+    audio.src = 'https://s3.amazonaws.com/freecodecamp/simonSound1.mp3';
+    audio.autoplay = true;
+}
+
+function soundRed() {
+    var audio = new Audio();
+    audio.src = 'https://s3.amazonaws.com/freecodecamp/simonSound2.mp3';
+    audio.autoplay = true;
+}
+
+function soundBlue() {
+    var audio = new Audio();
+    audio.src = 'https://s3.amazonaws.com/freecodecamp/simonSound3.mp3';
+    audio.autoplay = true;
+}
+
+function soundYellow() {
+    var audio = new Audio();
+    audio.src = 'https://s3.amazonaws.com/freecodecamp/simonSound4.mp3';
+    audio.autoplay = true;
+}
 
 function removeClasses() {
     $('#0').removeClass('lightGreen');
@@ -170,7 +170,7 @@ window.onload = function () {
             }
         };
         strict.onclick = function () {
-            if (counterForStrictButton === 0 || count === 1) {
+            if (counterForStrictButton === 0) {
                 $('#mode-led').addClass('strictLight');
                 strictOnClick();
             }
