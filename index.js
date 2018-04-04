@@ -3,41 +3,9 @@ var sequenceOfColorsByClick = [];
 var count = 0;
 var i = 0;
 var counterForStrictButton = 0;
-var counterForStartButton = 0;
 
 function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min)) + min;
-}
-
-function Sound(source, volume, loop) {
-    this.source = source;
-    this.volume = volume;
-    this.loop = loop;
-    var son;
-    this.son = son;
-    this.finish = false;
-    this.stop = function () {
-        document.body.removeChild(this.son);
-    };
-    this.start = function () {
-        if (this.finish) return false;
-        this.son = document.createElement("embed");
-        this.son.setAttribute("src", this.source);
-        this.son.setAttribute("hidden", "true");
-        this.son.setAttribute("volume", this.volume);
-        this.son.setAttribute("autostart", "true");
-        this.son.setAttribute("loop", this.loop);
-        document.body.appendChild(this.son);
-    };
-    this.remove = function () {
-        document.body.removeChild(this.son);
-        this.finish = true;
-    };
-    this.init = function (volume, loop) {
-        this.finish = false;
-        this.volume = volume;
-        this.loop = loop;
-    }
 }
 
 function strictOnClick() {
@@ -45,15 +13,19 @@ function strictOnClick() {
     sequenceOfColorsByClick = [];
     for (var j = 0; j < sequenceOfColors.length; j++) {
         if (sequenceOfColors[j] === 0) {
+            soundGreen();
             $('#0').addClass('lightGreen');
             setTimeout("$('#0').removeClass('lightGreen')", 1000);
         } else if (sequenceOfColors[j] === 1) {
+            soundRed();
             $('#1').addClass('lightRed');
             setTimeout("$('#1').removeClass('lightRed')", 1000);
         } else if (sequenceOfColors[j] === 2) {
+            soundBlue();
             $('#2').addClass('lightBlue');
             setTimeout("$('#2').removeClass('lightBlue')", 1000);
         } else if (sequenceOfColors[j] === 3) {
+            soundGreen();
             $('#3').addClass('lightYellow');
             setTimeout("$('#3').removeClass('lightYellow')", 1000);
         }
@@ -88,20 +60,48 @@ function randomColorsGeneration() {
     sequenceOfColors.push(getRandomInt(0, 4));
     for (var i = 0; i < sequenceOfColors.length; i++) {
         if (sequenceOfColors[i] === 0) {
-            $('#0').addClass('lightGreen');
+            setTimeout(soundGreen(),500*i);
+            setTimeout("$('#0').addClass('lightGreen')",100*i);
             setTimeout("$('#0').removeClass('lightGreen')", 1000);
         } else if (sequenceOfColors[i] === 1) {
-            $('#1').addClass('lightRed');
+            setTimeout(soundRed(),500*i);
+            setTimeout("$('#1').addClass('lightRed')",100*i);
             setTimeout("$('#1').removeClass('lightRed')", 1000);
         } else if (sequenceOfColors[i] === 2) {
-            $('#2').addClass('lightBlue');
+            setTimeout(soundBlue(),500*i);
+            setTimeout("$('#2').addClass('lightBlue')",100*i);
             setTimeout("$('#2').removeClass('lightBlue')", 1000);
         } else if (sequenceOfColors[i] === 3) {
-            $('#3').addClass('lightYellow');
+            setTimeout(soundYellow(),500*i);
+            setTimeout("$('#3').addClass('lightYellow')",100*i);
             setTimeout("$('#3').removeClass('lightYellow')", 1000);
         }
     }
 }
+
+// function soundGreen() {
+//     var audio = new Audio();
+//     audio.src = 'https://s3.amazonaws.com/freecodecamp/simonSound1.mp3';
+//     audio.autoplay = true;
+// }
+//
+// function soundRed() {
+//     var audio = new Audio();
+//     audio.src = 'https://s3.amazonaws.com/freecodecamp/simonSound2.mp3';
+//     audio.autoplay = true;
+// }
+//
+// function soundBlue() {
+//     var audio = new Audio();
+//     audio.src = 'https://s3.amazonaws.com/freecodecamp/simonSound3.mp3';
+//     audio.autoplay = true;
+// }
+//
+// function soundYellow() {
+//     var audio = new Audio();
+//     audio.src = 'https://s3.amazonaws.com/freecodecamp/simonSound4.mp3';
+//     audio.autoplay = true;
+// }
 
 function removeClasses() {
     $('#0').removeClass('lightGreen');
@@ -126,7 +126,6 @@ function restart() {
     removeClasses();
     i = 0;
     count = 0;
-    counterForStartButton = 0;
     counterForStrictButton = 0;
     sequenceOfColors = [];
     sequenceOfColorsByClick = [];
@@ -159,26 +158,26 @@ window.onload = function () {
         if ($('#on-off').hasClass('left')) {
             $('#on-off').removeClass('left');
             $('.count').removeClass('light').text('--');
-            $('#mode-led').removeClass('strictLight');
             restart();
         } else {
             $('#on-off').addClass('left');
             $('.count').addClass('light');
         }
         start.onclick = function () {
-            if (counterForStartButton === 0) {
+            if (count === 0) {
                 startOnClick();
                 counterForStartButton++;
             }
         };
         strict.onclick = function () {
-            if (counterForStrictButton === 0 && counterForStartButton === 1) {
+            if (counterForStrictButton === 0 || count === 1) {
                 $('#mode-led').addClass('strictLight');
                 strictOnClick();
             }
             counterForStrictButton++;
         };
         green.onclick = function () {
+            soundGreen();
             sequenceOfColorsByClick.push(0);
             $('#0').addClass('lightGreen');
             setTimeout("$('#0').removeClass('lightGreen')", 1000);
@@ -187,6 +186,7 @@ window.onload = function () {
             nextCount()
         };
         red.onclick = function () {
+            soundRed();
             sequenceOfColorsByClick.push(1);
             $('#1').addClass('lightRed');
             setTimeout("$('#1').removeClass('lightRed')", 1000);
@@ -195,6 +195,7 @@ window.onload = function () {
             nextCount();
         };
         blue.onclick = function () {
+            soundBlue();
             sequenceOfColorsByClick.push(2);
             $('#2').addClass('lightBlue');
             setTimeout("$('#2').removeClass('lightBlue')", 1000);
@@ -203,12 +204,13 @@ window.onload = function () {
             nextCount();
         };
         yellow.onclick = function () {
+            soundYellow();
             sequenceOfColorsByClick.push(3);
             $('#3').addClass('lightYellow');
             setTimeout("$('#3').removeClass('lightYellow')", 1000);
             mistake();
             i++;
-            nextCount()
+            nextCount();
         };
     };
 };
