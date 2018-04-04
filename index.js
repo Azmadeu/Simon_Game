@@ -2,51 +2,58 @@ var sequenceOfColors = [];
 var sequenceOfColorsByClick = [];
 var count = 0;
 var i = 0;
-var counter = 0;
+var counterForStrictButton = 0;
+var counterForStartButton = 0;
 
-// function Sound(source, volume, loop) {
-//     this.source = source;
-//     this.volume = volume;
-//     this.loop = loop;
-//     var son;
-//     this.son = son;
-//     this.finish = false;
-//     this.stop = function () {
-//         document.body.removeChild(this.son);
-//     };
-//     this.start = function () {
-//         if (this.finish) return false;
-//         this.son = document.createElement("embed");
-//         this.son.setAttribute("src", this.source);
-//         this.son.setAttribute("hidden", "true");
-//         this.son.setAttribute("volume", this.volume);
-//         this.son.setAttribute("autostart", "true");
-//         this.son.setAttribute("loop", this.loop);
-//         document.body.appendChild(this.son);
-//     };
-//     this.remove = function () {
-//         document.body.removeChild(this.son);
-//         this.finish = true;
-//     };
-//     this.init = function (volume, loop) {
-//         this.finish = false;
-//         this.volume = volume;
-//         this.loop = loop;
-//     }
-// }
+function getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min)) + min;
+}
+
+function Sound(source, volume, loop) {
+    this.source = source;
+    this.volume = volume;
+    this.loop = loop;
+    var son;
+    this.son = son;
+    this.finish = false;
+    this.stop = function () {
+        document.body.removeChild(this.son);
+    };
+    this.start = function () {
+        if (this.finish) return false;
+        this.son = document.createElement("embed");
+        this.son.setAttribute("src", this.source);
+        this.son.setAttribute("hidden", "true");
+        this.son.setAttribute("volume", this.volume);
+        this.son.setAttribute("autostart", "true");
+        this.son.setAttribute("loop", this.loop);
+        document.body.appendChild(this.son);
+    };
+    this.remove = function () {
+        document.body.removeChild(this.son);
+        this.finish = true;
+    };
+    this.init = function (volume, loop) {
+        this.finish = false;
+        this.volume = volume;
+        this.loop = loop;
+    }
+}
 
 function strictOnClick() {
-    for (var i = 0; i < sequenceOfColors.length; i++) {
-        if (sequenceOfColors[i] === 0) {
+    i = 0;
+    sequenceOfColorsByClick = [];
+    for (var j = 0; j < sequenceOfColors.length; j++) {
+        if (sequenceOfColors[j] === 0) {
             $('#0').addClass('lightGreen');
             setTimeout("$('#0').removeClass('lightGreen')", 1000);
-        } else if (sequenceOfColors[i] === 1) {
+        } else if (sequenceOfColors[j] === 1) {
             $('#1').addClass('lightRed');
             setTimeout("$('#1').removeClass('lightRed')", 1000);
-        } else if (sequenceOfColors[i] === 2) {
+        } else if (sequenceOfColors[j] === 2) {
             $('#2').addClass('lightBlue');
             setTimeout("$('#2').removeClass('lightBlue')", 1000);
-        } else if (sequenceOfColors[i] === 3) {
+        } else if (sequenceOfColors[j] === 3) {
             $('#3').addClass('lightYellow');
             setTimeout("$('#3').removeClass('lightYellow')", 1000);
         }
@@ -70,6 +77,8 @@ function startOnClick() {
             alert('WHO ARE YOU?!!!');
         }
     }
+    $('#mode-led').removeClass('strictLight');
+    counterForStrictButton = 0;
     sequenceOfColorsByClick = [];
     i = 0;
     $('#iner').text(sequenceOfColors);
@@ -92,10 +101,6 @@ function randomColorsGeneration() {
             setTimeout("$('#3').removeClass('lightYellow')", 1000);
         }
     }
-}
-
-function getRandomInt(min, max) {
-    return Math.floor(Math.random() * (max - min)) + min;
 }
 
 function removeClasses() {
@@ -121,7 +126,8 @@ function restart() {
     removeClasses();
     i = 0;
     count = 0;
-    counter = 0;
+    counterForStartButton = 0;
+    counterForStrictButton = 0;
     sequenceOfColors = [];
     sequenceOfColorsByClick = [];
 }
@@ -154,28 +160,23 @@ window.onload = function () {
             $('#on-off').removeClass('left');
             $('.count').removeClass('light').text('--');
             $('#mode-led').removeClass('strictLight');
-            removeClasses();
-            i = 0;
-            count = 0;
-            counter = 0;
-            sequenceOfColors = [];
-            sequenceOfColorsByClick = [];
+            restart();
         } else {
             $('#on-off').addClass('left');
             $('.count').addClass('light');
         }
         start.onclick = function () {
-            if (counter === 0) {
-              startOnClick();
-              counter++;
+            if (counterForStartButton === 0) {
+                startOnClick();
+                counterForStartButton++;
             }
-            strict.onclick = function () {
-                if (counter <= 3) {
-                    $('#mode-led').addClass('strictLight');
-                    strictOnClick();
-                }
-                counter++;
-            };
+        };
+        strict.onclick = function () {
+            if (counterForStrictButton === 0 && counterForStartButton === 1) {
+                $('#mode-led').addClass('strictLight');
+                strictOnClick();
+            }
+            counterForStrictButton++;
         };
         green.onclick = function () {
             sequenceOfColorsByClick.push(0);
