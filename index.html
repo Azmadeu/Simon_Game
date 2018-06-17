@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Simon® Game</title>
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="index.js"></script>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+<h2 id="iner"></h2>
+<!--<p id="i">Your Score: </br>1.</br>2.</br>3.</p>-->
+<div class="wrap">
+    <div class="wrap-in">
+        <div class="rw">
+            <div class="top-left-border-radius inline push green" id='0'></div>
+            <div class="top-right-border-radius inline push red" id='1'></div>
+        </div>
+        <div class="rw">
+            <div class="bottom-left-border-radius inline push yellow" id='3'></div>
+            <div class="bottom-right-border-radius inline push blue" id='2'></div>
+        </div>
+    </div>
+    <div class="center">
+        <h1 class="brand">Simon ®</h1>
+        <div class="rw">
+            <div class="display inline">
+                <h1 class="count led-off">-- </h1>
+                <h1 class="label">COUNT</h1>
+            </div>
+            <div class="btn-box inline">
+                <div class="round-btn full-red clickable" id="start"></div>
+                <h1 class="label">START</h1>
+            </div>
+            <div class="btn-box inline">
+                <div class="round-btn but clickable" id="strict"></div>
+                <h1 class="label">STRICT</h1>
+                <div class="led" id="mode-led"></div>
+            </div>
+        </div>
+        <div class="rw bot">
+            <h1 class="label inline">OFF</h1>
+            <div class="sw-slot inline">
+                <div class="switch" id="on-off"></div>
+            </div>
+            <h1 class="label inline">ON</h1>
+        </div>
+    </div>
+</div>
+<h3>&copy Made by Serge Makarov</h3>
+</body>
+</html>
